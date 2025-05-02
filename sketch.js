@@ -30,6 +30,11 @@ function draw() {
   // 設定 graphics 的背景顏色為黑色
   graphics.background(0);
 
+  // 將 graphics 的繪圖座標系統水平翻轉，解決其顯示畫面左右顛倒的問題
+  graphics.push(); // 儲存當前的繪圖設定
+  graphics.translate(graphics.width, 0); // 將原點移動到緩衝區的右上角
+  graphics.scale(-1, 1); // 水平翻轉緩衝區
+
   // 將 graphics 的寬與高切成每隔 20 為一個單位
   for (let x = 0; x < graphics.width; x += 20) {
     for (let y = 0; y < graphics.height; y += 20) {
@@ -42,6 +47,8 @@ function draw() {
       graphics.ellipse(x + 10, y + 10, 15, 15); // 圓心位於單位格的中心
     }
   }
+
+  graphics.pop(); // 恢復緩衝區的繪圖設定
 
   // 將繪圖緩衝區的內容繪製在攝影機影像的上方
   image(graphics, (width - capture.width) / 2, (height - capture.height) / 2);
