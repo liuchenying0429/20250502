@@ -14,7 +14,7 @@ function setup() {
 
   // 使用 createGraphics 產生一個與攝影機影像相同大小的繪圖緩衝區
   graphics = createGraphics(capture.width, capture.height);
-  graphics.background(255, 0, 0, 150); // 設定緩衝區的背景為半透明紅色
+  graphics.background(255, 0, 0, 100); // 設定緩衝區的背景為半透明紅色
 }
 
 function draw() {
