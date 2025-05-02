@@ -18,14 +18,14 @@ function setup() {
 
 function draw() {
   // 將畫布的繪圖座標系統水平翻轉，解決攝影機畫面左右顛倒的問題
-  //push(); // 儲存當前的繪圖設定
-  //translate(width, 0); // 將原點移動到畫布的右上角
-  //scale(-1, 1); // 水平翻轉畫布
+  push(); // 儲存當前的繪圖設定
+  translate(width, 0); // 將原點移動到畫布的右上角
+  scale(-1, 1); // 水平翻轉畫布
 
   // 將攝影機的影像繪製在畫布上，並置中顯示
-  //image(capture, (width - capture.width) / 2, (height - capture.height) / 2);
+  image(capture, (width - capture.width) / 2, (height - capture.height) / 2);
 
-  //op(); // 恢復繪圖設定，避免影響其他繪圖操作
+  pop(); // 恢復繪圖設定，避免影響其他繪圖操作
 
   // 設定 graphics 的背景顏色為黑色
   graphics.background(0);
