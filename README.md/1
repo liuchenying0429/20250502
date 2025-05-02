@@ -1,3 +1,7 @@
+20250502 上課筆記
+
+## 第一條指令
+
 產生一個全螢幕的畫布
 背景顏色為#ccd5ae 擷取攝影機的影像
 正常的顯示在視窗的中間
@@ -5,21 +9,42 @@
 請把程式碼寫在sketch.js
 
 說明:
-createCanvas(windowWidth, windowHeight)
+1.createCanvas(windowWidth, windowHeight)
 
-建立一個全螢幕大小的畫布，畫布的寬度和高度分別為視窗的寬度和高度。
+2.建立一個全螢幕大小的畫布，畫布的寬度和高度分別為視窗的寬度和高度。
 background('#ccd5ae')
 
-設定畫布的背景顏色為柔和的綠色調（#ccd5ae）。
+3.設定畫布的背景顏色為柔和的綠色調（#ccd5ae）。
 createCapture(VIDEO)
 
-啟用攝影機，並擷取影像。
+4.啟用攝影機，並擷取影像。
 capture.size(windowWidth * 0.8, windowHeight * 0.8)
 
-設定攝影機影像的寬度和高度為視窗大小的 80%。
+5.設定攝影機影像的寬度和高度為視窗大小的 80%。
 capture.hide()
 
-隱藏攝影機的原始影像，避免直接顯示在畫布外。
+6.隱藏攝影機的原始影像，避免直接顯示在畫布外。
 image(capture, (width - capture.width) / 2, (height - capture.height) / 2)
 
-將攝影機的影像繪製在畫布上，並透過計算使影像置中顯示。
+7.將攝影機的影像繪製在畫布上，並透過計算使影像置中顯示。
+
+```javascript=
+let capture;
+
+function setup() {
+  // 產生全螢幕的畫布，背景顏色為 #ccd5ae
+  createCanvas(windowWidth, windowHeight);
+  background('#ccd5ae');
+
+  // 擷取攝影機的影像
+  capture = createCapture(VIDEO);
+  capture.size(windowWidth * 0.8, windowHeight * 0.8); // 設定影像寬高為視窗大小的 80%
+  capture.hide(); // 隱藏原始影像，僅顯示在畫布上
+}
+
+function draw() {
+  // 將攝影機影像顯示在視窗的中間
+  image(capture, (width - capture.width) / 2, (height - capture.height) / 2);
+}
+
+```
