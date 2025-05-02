@@ -14,7 +14,6 @@ function setup() {
 
   // 使用 createGraphics 產生一個與攝影機影像相同大小的繪圖緩衝區
   graphics = createGraphics(capture.width, capture.height);
-  graphics.background(255, 0, 0, 100); // 設定緩衝區的背景為半透明紅色
 }
 
 function draw() {
@@ -26,8 +25,24 @@ function draw() {
   // 將攝影機的影像繪製在畫布上，並置中顯示
   image(capture, (width - capture.width) / 2, (height - capture.height) / 2);
 
+  pop(); // 恢復繪圖設定，避免影響其他繪圖操作
+
+  // 設定 graphics 的背景顏色為黑色
+  graphics.background(0);
+
+  // 將 graphics 的寬與高切成每隔 20 為一個單位
+  for (let x = 0; x < graphics.width; x += 20) {
+    for (let y = 0; y < graphics.height; y += 20) {
+      // 從攝影機影像中取得對應位置的顏色
+      let col = capture.get(x, y);
+
+      // 在每個單位內產生一個寬高為 15 的圓，顏色採用攝影機對應位置的顏色
+      graphics.fill(col);
+      graphics.noStroke();
+      graphics.ellipse(x + 10, y + 10, 15, 15); // 圓心位於單位格的中心
+    }
+  }
+
   // 將繪圖緩衝區的內容繪製在攝影機影像的上方
   image(graphics, (width - capture.width) / 2, (height - capture.height) / 2);
-
-  pop(); // 恢復繪圖設定，避免影響其他繪圖操作
 }
